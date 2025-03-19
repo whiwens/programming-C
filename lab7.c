@@ -4,7 +4,7 @@
 
 struct humen{
     char name[100], sname[100], pol[10];
-    int byear, height;
+    int byear, height;  
 };
 
 int main(){
