@@ -8,5 +8,5 @@ int main() {
     average = (num1 + num2) / 2;
     printf("Среднее арифметическое: %.2lf\n", average);
     return 0;
-}
+} 
         
