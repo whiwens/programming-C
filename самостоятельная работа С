@@ -9,3 +9,4 @@ int main() {
     printf("Среднее арифметическое: %.2lf\n", average);
     return 0;
 }
+        
