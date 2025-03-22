@@ -17,11 +17,8 @@ int main(int argc, char *argv[]) {
     double a, b, c;
     double x1, x2, d;
 
-   
-    a = 5.3;
-    b = 3.7;
-    c = 1.1;
-
+    printf("Введите значения коэффициентов a, b, c: ");
+        scanf("%lf %lf %lf", &a, &b, &c);
     
     d = b * b - 4 * a * c;
 
