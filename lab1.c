@@ -44,7 +44,7 @@ int main() {
         }
 
        
-        printf("Хотите решить еще одно уравнение? (y/n): ");
+        printf("Хотите решить ещё? (y/n): ");
         scanf(" %c", &choice); 
 
     } while (choice == 'y' || choice == 'Y');
