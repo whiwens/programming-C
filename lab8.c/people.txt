@@ -1,0 +1,4 @@
+Alice 1990 F 1.65
+Bob 1985 M 1.80
+Charlie 1990 M 1.75
+Diana 1985 F 1.70
