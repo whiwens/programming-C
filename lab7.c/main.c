@@ -37,11 +37,13 @@ int main() {
     fclose(inputFile);
 
     // Сортируем массив по году рождения
-    qsort(people, SIZE, sizeof(struct humen), compareByBirthYear);
-
+    qsort(people, SIZE, sizeof(struct humen), compareByBirthYear); //функция qsort вызывает подпрограмму compare один или несколько раз и передает указатели на два элемента массива при каждом вызове. 
+// 
+// Функция для сравнения людей по году рождения (для qsort) 12 строчка
+    
     // Выводим отсортированные данные
     for (int i = 0; i < SIZE; ++i) {
-        printf("%s %s %d\n", 
+        printf("%s %s %d\n",  // выводится текс текст число!!!!!!!
                people[i].name, 
                people[i].surname, 
                people[i].birthYear);
