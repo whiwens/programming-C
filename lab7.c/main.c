@@ -9,11 +9,30 @@ struct humen {
     int birthYear;      // Год рождения
 };
 
-// Функция для сравнения людей по году рождения (для qsort)
-int compareByBirthYear(const void *a, const void *b) {
-    const struct humen *h1 = (const struct humen *)a;
-    const struct humen *h2 = (const struct humen *)b;
-    return h1->birthYear - h2->birthYear;
+// Функция для обмена двух структур humen
+void swap(struct humen *a, struct humen *b) {
+    struct humen temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// Пузырьковая сортировка структур по году рождения
+void bubbleSort(struct humen arr[], int n) {
+    // Внешний цикл - проходит по всем элементам
+    for (int i = 0; i < n-1; i++) {
+        
+        // Внутренний цикл - сравниваем пары элементов
+        for (int j = 0; j < n-i-1; j++) {
+            
+            // Если текущий элемент больше следующего
+            if (arr[j].birthYear > arr[j+1].birthYear) {
+                // Меняем их местами
+                struct humen temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
 }
 
 int main() {
@@ -36,14 +55,12 @@ int main() {
     }
     fclose(inputFile);
 
-    // Сортируем массив по году рождения
-    qsort(people, SIZE, sizeof(struct humen), compareByBirthYear); //функция qsort вызывает подпрограмму compare один или несколько раз и передает указатели на два элемента массива при каждом вызове. 
-// 
-// Функция для сравнения людей по году рождения (для qsort) 12 строчка
-    
+    // Сортируем массив пузырьковой сортировкой
+    bubbleSort(people, SIZE);
+
     // Выводим отсортированные данные
     for (int i = 0; i < SIZE; ++i) {
-        printf("%s %s %d\n",  // выводится текс текст число!!!!!!!
+        printf("%s %s %d\n",  
                people[i].name, 
                people[i].surname, 
                people[i].birthYear);
