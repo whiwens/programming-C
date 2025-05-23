@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+#include <unistd.h>
+
+// Функция-обработчик сигналов
+void signal_handler(int sig) {
+    switch(sig) {
+        case SIGABRT:
+            printf("Получен сигнал SIGABRT (Аварийное завершение)\n");
+            break;
+        case SIGFPE:
+            printf("Получен сигнал SIGFPE (Ошибка вычисления с плавающей точкой)\n");
+            break;
+        case SIGILL:
+            printf("Получен сигнал SIGILL (Недопустимая инструкция)\n");
+            break;
+        case SIGINT:
+            printf("Получен сигнал SIGINT (Прерывание с терминала)\n");
+            break;
+        case SIGSEGV:
+            printf("Получен сигнал SIGSEGV (Нарушение сегментации)\n");
+            break;
+        case SIGTERM:
+            printf("Получен сигнал SIGTERM (Завершение программы)\n");
+            break;
+        default:
+            printf("Получен неизвестный сигнал: %d\n", sig);
+    }
+}
+
+int main() {
+    // Установка обработчиков для всех сигналов
+    signal(SIGABRT, signal_handler);
+    signal(SIGFPE, signal_handler);
+    signal(SIGILL, signal_handler);
+    signal(SIGINT, signal_handler);
+    signal(SIGSEGV, signal_handler);
+    signal(SIGTERM, signal_handler);
+
+    printf("Программа запущена (PID: %d)\n", getpid());
+    printf("Доступные команды:\n");
+    printf("1 - SIGABRT\n2 - SIGFPE\n3 - SIGILL\n4 - SIGINT\n5 - SIGSEGV\n6 - SIGTERM\n0 - Выход\n");
+
+    while(1) {
+        printf("Введите номер сигнала для генерации: ");
+        int choice;
+        scanf("%d", &choice);
+
+        switch(choice) {
+            case 0:
+                printf("Завершение программы...\n");
+                return 0;
+            case 1:
+                printf("Генерация SIGABRT...\n");
+                abort();
+            case 2:
+                printf("Генерация SIGFPE...\n");
+                int a = 0;
+                int b = 1 / a; // Деление на ноль
+                break;
+            case 3:
+                printf("Генерация SIGILL...\n");
+                raise(SIGILL);
+            case 4:
+                printf("Генерация SIGINT...\n");
+                raise(SIGINT);
+            case 5:
+                printf("Генерация SIGSEGV...\n");
+                int *ptr = NULL;
+                *ptr = 42; // Попытка записи по нулевому указателю
+                break;
+            case 6:
+                printf("Генерация SIGTERM...\n");
+                raise(SIGTERM);
+            default:
+                printf("Неверный выбор. Попробуйте снова.\n");
+        }
+    }
+
+    return 0;
+}
