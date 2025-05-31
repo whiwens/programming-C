@@ -26,7 +26,7 @@ int bd(double x, int p, int b) {
     // Union для доступа к битовому представлению double
     union { 
         double d;         // Как double
-        unsigned long l;  // Как unsigned long для удобства доступа к битам
+        unsigned long l;  // Как unsigned long для  доступа к битам
     } u = {x};  // Инициализируем переданным значением
     
     // Если не дошли до 8-го байта (0..7)
@@ -42,8 +42,8 @@ int bd(double x, int p, int b) {
 }
 
 int main() {
-    long l;    // Переменная для числа типа long
-    double d;  // Переменная для числа типа double
+    long l;    
+    double d;  
     
     printf("Введите long и double: ");
     scanf("%ld %lf", &l, &d);
